@@ -1,0 +1,67 @@
+header{
+	background: #007AC5;
+	color: #fff;
+}
+
+.main{
+	background: whitesmoke;
+}
+
+.color1{
+	background: green;
+	color:#fff;
+}
+.titulo{
+	background: #007AC5;
+	color:#fff;
+}
+.rol{
+	background: black;
+	color: #515151;
+}
+.info{
+	background: #007AC5;
+}
+.fecha{
+	background: #007AC5;
+	text-align: right;
+	padding-top: 5px;
+}
+.usuario{
+	background-color: #007AC5;
+	text-align: left;
+	padding-top: 5px;
+}
+.salir{
+	background-color: #007AC5;
+	padding-top: 3px;
+}
+.tsalir{
+	padding-top: 6px;
+	padding-right: 10px;
+}
+.contenido-menu h6{
+	background: whitesmoke;
+	padding-top: 4px;
+}
+.sub{
+	margin-left: 20px;
+}
+.sub a{
+	margin-left: 20px;
+}
+.btn_salir{
+	color:#A74640;
+}
+
+aside{
+	background: white;
+	color: #212121;
+}
+
+footer{
+	background: #007AC5;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
+}
