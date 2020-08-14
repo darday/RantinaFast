@@ -1,12 +1,16 @@
-
 <?php
 
-$id = $_REQUEST["ide"];
-
+$id = $_GET["ide"];
+session_start();
 try{
     require_once('lacolmenadata/conexion.php');
     $sql="select * FROM producto WHERE id_local = '$id'";
     $result=$conn->query($sql);
+    $sql1="select * FROM usuarios WHERE idusuario = '$id'";
+    $result1=$conn->query($sql1);
+    $_r = $result1->fetch_assoc();
+    $_SESSION['mail']=$_r['correo'];
+    
 }catch(Exception $e){
     $error = $e->getMessage();
 }
@@ -27,33 +31,35 @@ try{
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
     <link rel="stylesheet" href="css/sweetalert2.min.css">
     <link rel="stylesheet" href="css/tablaloca.css">
+    <link rel="stylesheet" type="text/css" href="css/rantinaStyle.css">
+    <!--Rantina Style-->
+	<link rel="stylesheet" type="text/css" href="css/rantinaStyle.css">
+
     <title>Carrito Compras</title>
 </head>
 
 <body>
 
-    <header>
-        <div class="container">
-            <div class="row align-items-stretch justify-content-between">
-                <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                    <a class="navbar-brand" href="venta.php">RANTINA FAST</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    
-                   
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
+    <header class="verdeoscuro">
+    <div class="container  ">
+			<div class="row text-center">
+				<div class=" col-xs-6 col-sm-6 col-md-1 col-lg-1 ">
+					<img  src="img/rantina.png " style="margin-top: 7px;" width="185px" height="77px">				
+				</div>				
+
+
+				<div class=" col-xs-3 col-sm-3 col-md-8 col-lg-8  text-center">
+                    <div class="" id="navbarCollapse">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item dropdown">
-                                <img src="img/cart.jpeg" class="nav-link dropdown-toggle img-fluid" height="70px"
+                            <li class="">
+                                <img src="img/cart.jpeg" class="" height="70px"
                                     width="70px" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false"></img>
                                 <div id="carrito" style="width:400px; height:300px; overflow: auto;" class="dropdown-menu" aria-labelledby="navbarCollapse">
                                     <table id="lista-carrito" class="table">
                                         <thead>
                                             <tr>
-                                                <th>Imagen</th>
+                                                <th>#</th>
                                                 <th>Nombre</th>
                                                 <th>Precio</th>
                                                 <th>Eliminar</th>
@@ -72,9 +78,28 @@ try{
                             </li>
                         </ul>
                     </div>
-                </nav>
-            </div>
-        </div>
+                
+
+                </div>
+                
+
+				
+				<div class=" col-xs-12 col-sm-12 col-md-3 col-lg-3   text-center">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<h6><?php date_default_timezone_set('America/Bogota');
+						echo "Riobamba, " . date("j") . " del " . date("n") . " de " . date("Y");?></h6>
+					</div>
+
+					<div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+						<h6 >Salir</h6><a href="logout.php" title="Salir" class="btn_salir"><i class="fas fa-sign-out-alt" style="font-size:36px;"></i></a>
+					</div>
+
+
+				</div>
+			</div>
+</div>  
+
+
     </header>
 
     <main>
@@ -90,7 +115,6 @@ try{
                     
                     <thead>
                     <tr>
-                  <th>#</th>
                   <th>Nombre</th>
                   <th>Presentación</th>
                   <th>Precio($)</th>
@@ -105,13 +129,12 @@ try{
                       $i = $i + 1;
                    printf("
                           <tr>
-                          <td>%s</td>
                           <td><h6>%s</h6></td>
                           <td><h5 class='card-title pricing-card-title'> <span class=''>%s</span></h5></td>
                           <td><h5 class='card-title pricing-card-title precio'> <span class=''>%s</span></h5></td>
                           <td><a href='' class='btn btn-block btn-primary agregar-carrito' data-id='%s'>Añadir al carrito</a></td>
                           </tr>
-                          ",$i,$row["nombre_producto"],$row["medida"],$row["precio"],$row["id_producto"],$id);
+                          ",$row["nombre_producto"],$row["medida"],$row["precio"],$row["id_producto"],$id);
        
                           }
                        }

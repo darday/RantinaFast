@@ -1,3 +1,18 @@
+<?php
+
+session_start();
+try{
+    require_once ('lacolmenadata/conexion.php');
+    $correo = $_SESSION['user'];
+    $sql = "select * from usuarios where correo = '$correo'";
+    $result=$conn->query($sql);
+    $_r = $result->fetch_array();
+
+}catch(Exception $e){
+ $error = $e->getMessage();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +25,8 @@
     <script src="js/popper.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        
+    <link rel="stylesheet" type="text/css" href="css/rantinaStyle.css">
 
     <link rel="stylesheet" href="css/sweetalert2.min.css">
 
@@ -28,7 +45,7 @@
         <div class="container">
             <div class="row justify-content-between mb-5">
                 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                    <a class="navbar-brand" href="venta.php">LA COLMENA</a>
+                    <a class="navbar-brand" href="venta.php">RANTINA FAST</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -50,19 +67,19 @@
                             <label for="cliente" class="col-12 col-md-2 col-form-label h2">Cliente :</label>
                             <div class="col-12 col-md-10">
                                 <input type="text" class="form-control" id="cliente"
-                                    placeholder="Ingresa nombre cliente" name="cliente" required>
+                                    placeholder="Ingresa nombre cliente" name="cliente" value="<?php echo $_r['nombres']; ?>" required disabled>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-12 col-md-2 col-form-label h2">CI/RUC :</label>
                             <div class="col-12 col-md-10">
                                 <input type="text" class="form-control" id="cedula" 
-                                    placeholder="xxxxxxxxxxxx" name="cedula" required>
+                                    placeholder="1313459966" value="<?php echo $_r['ci']; ?>" name="cedula" required disabled>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-12 col-md-2 col-form-label h2">Dirección :</label>
+                            <label class="col-12 col-md-2 col-form-label h2">Teléfono :</label>
                             <div class="col-12 col-md-10">
                                 <input type="text" class="form-control"  
                                     placeholder="098065744" name="telefono" required>
@@ -73,7 +90,7 @@
                             <label class="col-12 col-md-2 col-form-label h2">Dirección :</label>
                             <div class="col-12 col-md-10">
                                 <input type="text" class="form-control"
-                                    placeholder="Av. tus nalgas" name="direccion" required>
+                                    placeholder="Av. Maldonado" name="direccion" required>
                             </div>
                         </div>
 
@@ -82,6 +99,8 @@
                             <div class="col-12 col-md-10">
                             <p><?php echo date('Y-m-d');?><p>
                             <input class="form-control" type="date" name="fecha" value="<?php echo date('Y-m-d');?>" hidden>
+                            <input name="fecha" value="<?php echo date('Y-m-d');?>" hidden>
+                            <input name="mail" value="<?php echo $_SESSION['mail'];?>" hidden>
                             </div>
                             </div>
 

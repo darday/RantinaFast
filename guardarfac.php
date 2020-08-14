@@ -1,20 +1,27 @@
 <?php
+
 require_once('lacolmenadata/conexion.php');
+session_start();
 
 $nombre = $_POST['cliente'];    
 $cedula = $_POST['cedula'];
+$direc = $_POST['direccion'];
+$tlf = $_POST['telefono'];
 $monto = $_POST['monto'];
 $fecha = $_POST['fecha'];
 $cantidadn = $_POST['cantidadn'];
 $idn = $_POST['idn'];
 $nombre_producto = $_POST['producton'];
-$categoria = $_POST['categorian'];
-$precio = $_POST['precion'];
+$estado = 0;
+$corr = $_POST['mail'];
 
 try{
-    $sql="INSERT INTO cliente (nombres, ci) values ('$nombre', '$cedula')";
+    $aux = $_SESSION['user'];
+    $sql="select * from usuarios where correo = '$aux'";
     $result=$conn->query($sql);
-    $sql1="INSERT INTO factura (id_cliente, total, fecha) values ('$cedula', '$monto', '$fecha')";
+    $_r = $result->fetch_array();
+    $idclie = $_r['idusuario'];
+    $sql1="INSERT INTO factura (id_cliente, total, fecha, estado, direccion, telefono, local) values ('$idclie', '$monto', '$fecha', '$estado', '$direc', '$tlf', '$corr')";
     $result1=$conn->query($sql1);
     $result2 = $conn->query("SELECT * FROM factura
 	 ORDER BY id_factura DESC LIMIT 1");
@@ -34,28 +41,6 @@ for($i = 0; $i < count($idn); ++$i){
         $sql3="INSERT INTO venta (id_factura, id_producto, cantidad) values ('$auxidfac','$auxid', '$auxcant')";
         $result3=$conn->query($sql3);
 
-        $sqlx1="select * from producto where nombre_producto='$auxnom'";
-        $resultx1=$conn->query($sqlx1);
-        $rowx1 = $resultx1->fetch_array();
-        $auxcat = $rowx1['id_cat'];
-
-        $ganancia = $auxcant*($auxprecio - $rowx1['precio_pr']);
-        $sqlg="insert into ganancias (id_factura, ganancia) values ('$auxidfac', '$ganancia')";
-        $resultg=$conn->query($sqlg);
-
-
-        $sqlx="select * from categoria where id_cat='$auxcat'";
-        $resultx=$conn->query($sqlx);
-        $rowx = $resultx->fetch_array();
-        $resta = $rowx['bodega'] - $auxcant;
-
-        $sql4="UPDATE categoria SET bodega='$resta' where id_cat='$auxcat'";
-        $result4=$conn->query($sql4);
-
-        $sql5="insert into modifi_bodega (fecha, accion, cantidad, id_cat) values ('$fecha','Venta','$auxcant', '$auxcat')";
-        $result5=$conn->query($sql5);
-        unset($auxcant);
-        unset($result3);
         }
         catch(Exception $e){
             $error = $e->getMessage();
@@ -64,6 +49,6 @@ for($i = 0; $i < count($idn); ++$i){
 
 $conn->close();
 
-header("location: venta.php");
+header("location: indexlog.php");
 
 ?>

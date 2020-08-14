@@ -25,13 +25,39 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+
+<link rel="stylesheet" type="text/css" href="css/rantinaStyle.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+ 
 </head>
 <body>
+
+
+	<div  >
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"  style="text-align:center;">
+        <div class="container">
+			<div class="row text-center">
+			<a class="nav-link" href="index.php">
+				<button type="button" class="btn btn-success" style="margin-top: -9px; margin-bottom: - 2px; ">VISITAR LA WEB</button> 
+			</a>
+            
+				
+			</div>
+            
+			
+			
+        </div>
+        </nav>
+    </div>
 	
 	<div class="limiter">
+	<BR>
+	<BR>
+	
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-form-title" style="background-image: url(img/cabecera_login.jpg);">
+				<div class="login100-form-title " style="background-image: url(img/cabecera_login.jpg);">
 					<span class="login100-form-title-1">Iniciar &nbsp; Sesión</span>
 				</div>
 					<?php

@@ -6,8 +6,31 @@ class User extends DB{
     private $rol;
     private $nombrerol;
     public function userExists($user, $pass){
-        $query = $this->connect()->prepare('SELECT * FROM usuarios WHERE correo = :user AND pass = :pass');
+        $query = $this->connect()->prepare('SELECT * FROM usuarios WHERE correo = :user AND pass = :pass AND tipo = 3' );
         $query->execute(['user' => $user, 'pass' => $pass]);
+
+        if($query->rowCount()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function userExistsProv($user, $pass){
+        $query = $this->connect()->prepare('SELECT * FROM usuarios WHERE correo = :user AND pass = :pass AND tipo = 2' );
+        $query->execute(['user' => $user, 'pass' => $pass]);
+
+        if($query->rowCount()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function userExistsClien($user, $pass){
+        $query = $this->connect()->prepare('SELECT * FROM usuarios WHERE correo = :user AND pass = :pass AND tipo = 1' );
+        $query->execute(['user' => $user, 'pass' => $pass]);
+
         if($query->rowCount()){
             return true;
         }else{

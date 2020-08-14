@@ -56,3 +56,27 @@ function provListarProducto(){
 	$("#contenidodinamico").load("panel_prov_listprod.php");
 }
 
+function provListarPedido(){
+	$("#contenidodinamico").load("panel_prov_listpedi.php");
+}
+
+function provListarPedidoEntregado(){
+	$("#contenidodinamico").load("panel_prov_listpedientre.php");
+}
+
+function provListarListaCompras(){
+	$("#contenidodinamico").load("panel_prov_listlistcomp.php");
+}
+
+/*********************Admin******************************* */
+function adminListarCliente(){
+	$("#contenidodinamico").load("admin_listclien.php");
+}
+
+function adminListarProveedor(){
+	$("#contenidodinamico").load("admin_listprov.php");
+}
+
+function adminListarNoticia(){
+	$("#contenidodinamico").load("admin_listnot.php");
+}

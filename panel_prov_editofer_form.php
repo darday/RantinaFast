@@ -12,14 +12,16 @@ $correo=$_SESSION['user'];
 
 
 $id_prod=$_GET['edit'];
-echo $id_prod;
+//echo $id_prod;
 require_once ('lacolmenadata/conexion.php');
 $edit_id = $_GET['edit'];
 $id_query = "Select * from producto  where id_producto='$id_prod'";
 $run = mysqli_query($conn, $id_query);
 $row = mysqli_fetch_array($run);
 
-//echo $row['idusuario'];
+$id_query2 = "Select * from usuarios  where correo='$correo'";
+$run2 = mysqli_query($conn, $id_query2);
+$row2 = mysqli_fetch_array($run2);
 
 ?>
 
@@ -61,35 +63,49 @@ $row = mysqli_fetch_array($run);
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
 
+	<!--Rantina Style-->
+	<link rel="stylesheet" type="text/css" href="css/rantinaStyle.css">
+
 </head>
 <body>
-	<header>
-		<div class="container">
+		
+	<header class="verdeoscuro">
+	<div class="container ">
 			<div class="row text-center">
-				
-				<div class="titulo col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
-				<h2>RANTINA FAST</h2>
-				<h6><?php  ?></h6>
-				</div>
-				<div class="info col-xs-12 col-sm-12 col-md-6 col-lg-6 row">
-					<div class="fecha col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<h6><?php date_default_timezone_set('America/Bogota');
-						echo "Rocafuerte, " . date("j") . " del " . date("n") . " de " . date("Y");?></h6>
+				<div class=" col-xs-6 col-sm-6 col-md-4 col-lg-4 ">
+					<img  src="img/rantina.png " style="margin-top: 7px;" width="185px" height="77px">				
+				</div>				
+
+				<div class=" col-xs-6 col-sm-6 col-md-5 col-lg-5  text-center">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<h2 >MI NEGOCIO</h2>
+					</div>
+					<div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+						<h5 style="color: white;" ><?php echo $row2['nombre_local']   ?></h5>				
 					</div>
 
-					<div class="usuario col-xs-12 col-sm-12 col-md-9 col-lg-9 row">
-						<h5><?/*php echo $user->getNombre();  */?></h5>
+					
+
+				</div>
+				
+				<div class=" col-xs-12 col-sm-12 col-md-3 col-lg-3   text-center">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<h6><?php date_default_timezone_set('America/Bogota');
+						echo "Riobamba, " . date("j") . " del " . date("n") . " de " . date("Y");?></h6>
 					</div>
-					<div class="salir col-xs-12 col-sm-12 col-md-4 col-lg-4 row">
-						<h6 class="tsalir">Salir</h6><a href="logout.php" title="Salir" class="btn_salir"><i class="fas fa-sign-out-alt" style="font-size:36px;"></i></a>
+
+					<div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+						<h6 >Salir</h6><a href="logout.php" title="Salir" class="btn_salir"><i class="fas fa-sign-out-alt" style="font-size:36px;"></i></a>
 					</div>
+
 
 				</div>
 			</div>
-		</div>
+	</div>
+
 	</header>
 
-	<div class="container">
+	<div class="container verdeoscuro">
 			<section class="main row">
 				<aside class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
 					<?php include_once 'components/sidebar.php'; ?>
@@ -119,7 +135,7 @@ $row = mysqli_fetch_array($run);
 						</div>
 
 						
-						<input type="hidden" name="id_local" value="<?php echo $row['idusuario']?>"  >
+						<input type="hidden" name="id_local" value="<?php echo $row['id_local']?>"  >
 						<input type="hidden" name="id_producto" value="<?php echo $id_prod?>"  >
 						<input type="hidden" name="id_tipo" value="2"  >
 
@@ -138,6 +154,7 @@ $row = mysqli_fetch_array($run);
 	</div>
 
 	<?php include_once 'components/footer.php'; ?>
+
 	
 
 </body>

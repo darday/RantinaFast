@@ -35,6 +35,6 @@
 		$error = "Información no añadida";
 	}
 
-	header('Location: index.php');
+	header('Location: indexlog.php');
 
 ?>

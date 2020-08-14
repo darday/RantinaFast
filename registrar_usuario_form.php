@@ -83,7 +83,9 @@
 							<input type="submit" name="submit" value="Registrar" class="login100-form-btn">
 						</div>
 						<div><br>
-							<input name="Borrar" type="reset" class="login100-form-btn" value="Limpiar">
+							<a href="registrar_select.php">
+								<input name="Borrar" type="button" class="login100-form-btn" value="Cancelar">
+							</a>
 						</div>
 					</div>
 				</form>

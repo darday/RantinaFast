@@ -1,12 +1,12 @@
 <?php
-session_start();
+//session_start();
 require_once('user.php');
 require_once('user_session.php');
 $correo=$_SESSION['user'];
 	if(!isset($_SESSION['user'])){
 		session_unset();
         session_destroy();
-		header('location: index.php');
+		header('location: indexlog.php');
 	}
 
 require_once ('lacolmenadata/conexion.php');
@@ -35,34 +35,15 @@ $row = mysqli_fetch_array($run);
 	<link rel="stylesheet" type="text/css" href="font-awesome/css/all.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/rantinaStyle.css">
 
 
 
 </head>
 <body>
-	<header>
-		<div class="container">
-			<div class="row">
-				<div class="titulo col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
-				<h2>MI NEGOCIO</h2>
-				<h6><?php  ?></h6>
-				</div>
-				<div class="info col-xs-12 col-sm-12 col-md-6 col-lg-6 row">
-					<div class="fecha col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<h6><?php date_default_timezone_set('America/Bogota');
-						echo "Rocafuerte, " . date("j") . " del " . date("n") . " de " . date("Y");?></h6>
-					</div>
+	<header class="verdeoscuro">
+		<?php include_once 'components/header_prov.php'; ?>
 
-					<div class="usuario col-xs-12 col-sm-12 col-md-9 col-lg-9 row">
-						<h5><?php echo $row['nombre_local']   ?></h5>
-					</div>
-					<div class="salir col-xs-12 col-sm-12 col-md-4 col-lg-4 row">
-						<h6 class="tsalir">Salir</h6><a href="logout.php" title="Salir" class="btn_salir"><i class="fas fa-sign-out-alt" style="font-size:36px;"></i></a>
-					</div>
-
-				</div>
-			</div>
-		</div>
 	</header>
 
 	<div class="container">
@@ -71,13 +52,27 @@ $row = mysqli_fetch_array($run);
 					<?php include_once 'components/sidebar.php'; ?>
 				</aside>
 
-				<article id="contenidodinamico" class=" col-xs-12 col-sm-8 col-md-9 col-lg-9 text-center">
-					<img  src="img/prov/<?php echo $row['logo'];?> " class="img-fluid" alt="Responsive image">
+				<article id="contenidodinamico" class=" col-xs-12 col-sm-8 col-md-9 col-lg-9 ">
+					<div class="div text-LEFT">
+						<h1>BIENVENIDO A RANTINAFAST</h1>
+						<hr>
+						<br>
+						<br>
+						
+					</div>
+					<div class="text-center">
+						<img  src="img/prov/<?php echo $row['logo'];?> " class="img-fluid" alt="Responsive image">
+						<br>
+						<br>
+						<br>
+					</div>
 				</article>
 			</section>
 	</div>
-
+	
 	<?php include_once 'components/footer.php'; ?>
+
+	
 
 
 </body>

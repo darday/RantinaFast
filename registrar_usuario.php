@@ -18,4 +18,4 @@ $run = mysqli_query($conn, $insert_query);
 
 
 
-header("location: index.php");
+header("location: indexlog.php");

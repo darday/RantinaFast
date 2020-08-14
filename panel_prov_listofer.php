@@ -29,7 +29,10 @@ $(document).ready( function () {
 </script>
 
   <div class="card text-center">
-  <div class="card-header">LISTAR OFERTAS</div>
+  <BR>
+  <div class="wrap-input100  m-b-26 text-center" data-validate="Campo Obligatorio">
+							<h1>LISTAR PRODUCTOS</h1>
+  </div>
   <div class="card-body text-center">
       <?php
              session_start();

@@ -1,4 +1,4 @@
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<title>Administración</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="x-ua-compatible" content="ie-edge">
@@ -32,3 +32,7 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
+
+	<!--Rantina Style-->
+	<link rel="stylesheet" type="text/css" href="css/rantinaStyle.css">
+

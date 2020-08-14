@@ -155,8 +155,6 @@ class Carrito {
             <input type="text" name="producton[]" value="${producto.titulo}" hidden>
             <input type="text" name="cantidadn[]" class="cantidad" value="${producto.cantidad}" hidden>
             <input type="text" name="idn[]" value="${producto.id}" hidden>
-            <input type="text" name="categorian[]" value="${producto.categoria}" hidden>
-            <input type="text" name="precion[]" value="${producto.precio}" hidden>
             `;
             listaCompra.appendChild(row);
         });
